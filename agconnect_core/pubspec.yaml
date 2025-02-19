@@ -1,11 +1,11 @@
 name: agconnect_core
 description: Flutter plugin for AppGallery Connect Core SDK.
-version: 1.9.0+300
+version: 2.0.0
 homepage: https://www.huawei.com
 
 environment:
-  sdk: ">=2.12.0 <4.0.0"
-  flutter: ">=1.10.0"
+  sdk: "3.7.0"
+  flutter: "3.29.0"
 
 dependencies:
   flutter:

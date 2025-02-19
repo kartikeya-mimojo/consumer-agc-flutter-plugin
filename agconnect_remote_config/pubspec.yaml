@@ -1,11 +1,11 @@
 name: agconnect_remote_config
 description: Remote Configuration of AppGallery Connect allows you to change the behavior and appearance of your app online without requiring users to update the app.
-version: 1.9.0+300
+version: 2.0.0
 homepage: https://www.huawei.com
 
 environment:
-  sdk: ">=2.12.0 <4.0.0"
-  flutter: ">=1.10.0"
+  sdk: "3.7.0"
+  flutter: "3.29.0"
 
 dependencies:
   flutter:
@@ -23,4 +23,3 @@ flutter:
         pluginClass: AGConnectRemoteConfigPlugin
       ios:
         pluginClass: AGConnectRemoteConfigPlugin
-

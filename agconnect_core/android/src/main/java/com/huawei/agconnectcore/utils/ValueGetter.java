@@ -51,6 +51,10 @@ public class ValueGetter {
      * @return map
      */
     public static AGConnectOptions toAGConnectOptions(Map value, Context context) {
+            // Ensure the value is a Map
+        if (value instanceof Map) {
+            @SuppressWarnings("unchecked") // suppress the unchecked cast warning
+            
             Map<String,Object> map = (Map<String, Object>) value;
             String productId = (String) map.get("productId");
             String appId = (String) map.get("appId");
@@ -70,6 +74,11 @@ public class ValueGetter {
                     .setRoutePolicy(toRoutePolicy(routePolicy))
                     .setPackageName(packageName);
             return builder.build(context);
+            } else {
+            // If the value is not a Map, log a warning and return null
+            Log.w(tag, "Expected Map<String, Object> for AGConnectOptions, but received " + value.getClass().getName());
+            return null;
+        }
     }
 
     private static AGCRoutePolicy toRoutePolicy(int value){

@@ -31,32 +31,29 @@ import java.util.HashMap;
 import java.util.Map;
 
 import androidx.annotation.NonNull;
-import io.flutter.embedding.engine.plugins.FlutterPlugin;
+import io.flutter.embedding.engine.plugins.FlutterPlugin;  // Import V2 embedding
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
-import io.flutter.plugin.common.PluginRegistry.Registrar;
+// Removed PluginRegistry.Registrar because V2 embedding does not use this anymore.
 
 public class AGConnectRemoteConfigPlugin implements FlutterPlugin, MethodCallHandler {
     private MethodChannel channel;
 
     @Override
     public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
+        // Initialize AGConnect SDK and set up the channel for V2 embedding
         initAGConnectSDK(flutterPluginBinding.getApplicationContext());
         channel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(),
                 "com.huawei.flutter/agconnect_remote_config");
         channel.setMethodCallHandler(this);
     }
 
-    public static void registerWith(Registrar registrar) {
-        initAGConnectSDK(registrar.context().getApplicationContext());
-        final MethodChannel channel = new MethodChannel(registrar.messenger(),
-                "com.huawei.flutter/agconnect_remote_config");
-        channel.setMethodCallHandler(new AGConnectRemoteConfigPlugin());
-    }
+    // Removed the 'registerWith' method as it is no longer necessary with Flutter V2 embedding.
 
     static void initAGConnectSDK(Context context) {
+        // Ensure that AGConnect SDK is initialized once
         if (AGConnectInstance.getInstance() == null) {
             AGConnectInstance.initialize(context);
         }
@@ -64,6 +61,7 @@ public class AGConnectRemoteConfigPlugin implements FlutterPlugin, MethodCallHan
 
     @Override
     public void onMethodCall(@NonNull MethodCall call, @NonNull final Result result) {
+        // Handling different method calls to interact with AGConnect SDK
         if (call.method.equals("applyDefaults")) {
             Map<String, Map<String, Object>> arguments = call.arguments();
             Map<String, Object> defaults = arguments.get("defaults");
@@ -144,6 +142,7 @@ public class AGConnectRemoteConfigPlugin implements FlutterPlugin, MethodCallHan
 
     @Override
     public void onDetachedFromEngine(@NonNull FlutterPluginBinding binding) {
+        // Clean up when the plugin is detached from the engine
         channel.setMethodCallHandler(null);
     }
 }

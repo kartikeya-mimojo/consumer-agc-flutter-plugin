@@ -2,20 +2,19 @@ name: agconnect_crash_example
 description: Demonstrates how to use the agconnect_crash plugin.
 version: 1.9.0+300
 
-publish_to: "none" 
+publish_to: "none"
 
 environment:
-  sdk: ">=2.12.0 <4.0.0"
+  sdk: ">=3.7.0 <4.0.0"
+  flutter: ">=3.29.0 <3.39.0"
 
 dependencies:
   flutter:
     sdk: flutter
   huawei_analytics: ^6.5.0+301
   agconnect_crash:
-    
     path: ../
 
-  
   cupertino_icons: ^1.0.5
 
 dev_dependencies:
@@ -24,11 +23,5 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-
-
-
 flutter:
- 
   uses-material-design: true
-
-  
