@@ -3,7 +3,8 @@ description: Demonstrates how to use the agconnect_auth plugin.
 version: 1.2.0+300
 
 environment:
-  sdk: ">=2.12.0 <4.0.0"
+  sdk: ">=3.7.0 <4.0.0"
+  flutter: ">=3.29.0"
 
 publish_to: none
 
@@ -31,7 +32,6 @@ dev_dependencies:
   flutter_lints: ^2.0.0
 
 flutter:
-
   uses-material-design: true
 
   assets:

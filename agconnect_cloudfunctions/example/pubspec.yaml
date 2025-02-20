@@ -3,7 +3,8 @@ description: Demonstrates how to use the AppGallery Connect Cloud Functions plug
 version: 1.9.0+300
 
 environment:
-  sdk: ">=2.12.0 <4.0.0"
+  sdk: ">=3.7.0 <4.0.0"
+  flutter: ">=3.29.0"
 
 dependencies:
   flutter:

@@ -9,7 +9,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.6.0'
+        classpath 'com.android.tools.build:gradle:8.8.0'
     }
 }
 
@@ -24,12 +24,16 @@ rootProject.allprojects {
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.3"
+    compileSdkVersion 35
+    buildToolsVersion "35.0.0"
 
     defaultConfig {
-        minSdkVersion 18
-        targetSdkVersion 30
+        minSdkVersion 26
+        targetSdkVersion 35
+    }
+
+    if (project.android.hasProperty("namespace")) {
+        namespace 'com.huawei.agconnect_cloudstorage'
     }
 
     lintOptions{
@@ -37,8 +41,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 
 }

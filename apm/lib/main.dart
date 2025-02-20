@@ -18,9 +18,7 @@ Future<void> main() async {
 class _App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: _HomeScreen(),
-    );
+    return MaterialApp(home: _HomeScreen());
   }
 }
 
@@ -33,12 +31,12 @@ class __HomeScreenState extends State<_HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('AGC APM Example'),
-      ),
+      appBar: AppBar(title: const Text('AGC APM Example')),
       body: ListView(
         padding: const EdgeInsets.all(16),
-        physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+        physics: const BouncingScrollPhysics(
+          parent: AlwaysScrollableScrollPhysics(),
+        ),
         children: <Widget>[
           _buildGroup(
             title: 'Collection',
@@ -80,15 +78,17 @@ class __HomeScreenState extends State<_HomeScreen> {
               _buildButton(
                 text: 'Create - Start - Process - Stop',
                 onTap: () async {
-                  final AGConnectAPMCustomTrace customTrace = await AGConnectAPM.getInstance().createCustomTrace('CustomTrace1');
+                  final AGConnectAPMCustomTrace customTrace =
+                      await AGConnectAPM.getInstance().createCustomTrace(
+                        'CustomTrace1',
+                      );
                   await customTrace.start();
                   await customTrace.putMeasure('ProcessingTimes', 0);
-                  await Future.forEach(
-                    List.generate(50, (_) => _),
-                    (int i) async {
-                      await customTrace.incrementMeasure('ProcessingTimes', i);
-                    },
-                  );
+                  await Future.forEach(List.generate(50, (index) => index), (
+                    int i,
+                  ) async {
+                    await customTrace.incrementMeasure('ProcessingTimes', i);
+                  });
                   await customTrace.putProperty('ProcessResult', 'Success');
                   await customTrace.putProperty('Status', 'Normal');
                   await customTrace.stop();
@@ -103,21 +103,30 @@ class __HomeScreenState extends State<_HomeScreen> {
               _buildButton(
                 text: 'Create - Start - Process - Stop',
                 onTap: () async {
-                  final String url = 'https://www-file.huawei.com/-/media/corporate/images/home/logo/huawei_logo.png';
-                  final AGConnectAPMNetworkMeasure networkMeasure = await AGConnectAPM.getInstance().createNetworkMeasure(
-                    url: url,
-                    method: AGConnectAPMNetworkMeasureMethods.GET,
-                  );
+                  final String url =
+                      'https://www-file.huawei.com/-/media/corporate/images/home/logo/huawei_logo.png';
+                  final AGConnectAPMNetworkMeasure networkMeasure =
+                      await AGConnectAPM.getInstance().createNetworkMeasure(
+                        url: url,
+                        method: AGConnectAPMNetworkMeasureMethods.GET,
+                      );
                   await networkMeasure.start();
                   final http.Response response = await http.get(Uri.parse(url));
 
                   await networkMeasure.setStatusCode(response.statusCode);
                   if (response.request?.contentLength != null) {
-                    await networkMeasure.setBytesSend(response.request!.contentLength!);
+                    await networkMeasure.setBytesSend(
+                      response.request!.contentLength!,
+                    );
                   }
                   if (response.contentLength != null) {
-                    await networkMeasure.setBytesReceived(response.contentLength!);
-                    await networkMeasure.putProperty("BytesReceived", response.contentLength!.toString());
+                    await networkMeasure.setBytesReceived(
+                      response.contentLength!,
+                    );
+                    await networkMeasure.putProperty(
+                      "BytesReceived",
+                      response.contentLength!.toString(),
+                    );
                   }
                   await networkMeasure.stop();
                   return await networkMeasure.getProperties();
@@ -131,7 +140,9 @@ class __HomeScreenState extends State<_HomeScreen> {
               _buildButton(
                 text: 'Set',
                 onTap: () async {
-                  await AGConnectAPM.getInstance().setUserIdentifier('UserIdentifier1');
+                  await AGConnectAPM.getInstance().setUserIdentifier(
+                    'UserIdentifier1',
+                  );
                 },
               ),
             ],
@@ -141,10 +152,7 @@ class __HomeScreenState extends State<_HomeScreen> {
     );
   }
 
-  Widget _buildGroup({
-    required String title,
-    required List<Widget> children,
-  }) {
+  Widget _buildGroup({required String title, required List<Widget> children}) {
     return Container(
       padding: const EdgeInsets.all(8),
       margin: const EdgeInsets.symmetric(vertical: 8),
@@ -186,12 +194,13 @@ class __HomeScreenState extends State<_HomeScreen> {
             builder: (BuildContext context) {
               return AlertDialog(
                 title: const Text('SUCCESS'),
-                content: result != null
-                    ? SingleChildScrollView(
-                        physics: const BouncingScrollPhysics(),
-                        child: Text(result.toString()),
-                      )
-                    : null,
+                content:
+                    result != null
+                        ? SingleChildScrollView(
+                          physics: const BouncingScrollPhysics(),
+                          child: Text(result.toString()),
+                        )
+                        : null,
               );
             },
           );
@@ -202,7 +211,9 @@ class __HomeScreenState extends State<_HomeScreen> {
               return AlertDialog(
                 title: const Text('ERROR'),
                 content: Text(
-                  e is AssertionError ? e.message.toString() : AGConnectAPMException.from(e).message,
+                  e is AssertionError
+                      ? e.message.toString()
+                      : AGConnectAPMException.from(e).message,
                 ),
               );
             },
