@@ -1,6 +1,6 @@
 name: agconnect_remote_config
 description: Remote Configuration of AppGallery Connect allows you to change the behavior and appearance of your app online without requiring users to update the app.
-version: 2.0.0
+version: 2.0.0+001
 homepage: https://www.huawei.com
 
 environment:
