@@ -2,7 +2,7 @@ name: agconnect_applinking
 description:
   App Linking allows you to create cross-platform links that can work as
   defined regardless of whether your app has been installed by a user.
-version: 2.0.0+001
+version: 2.0.0+002
 homepage: https://developer.huawei.com/consumer/en/agconnect/
 
 environment:

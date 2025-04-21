@@ -1,7 +1,7 @@
 name: agconnect_appmessaging
 description: You can use App Messaging of AppGallery Connect to send relevant messages to target users.
 homepage: https://developer.huawei.com/consumer/en/agconnect/
-version: 2.0.0+001
+version: 2.0.0+002
 
 environment:
   sdk: ">=3.7.0 <4.0.0"

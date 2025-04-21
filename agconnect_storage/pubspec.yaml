@@ -2,7 +2,7 @@ name: agconnect_cloudstorage
 description: Cloud Storage allows you to store high volumes contents securely and economically.
 homepage: https://developer.huawei.com/consumer/en/agconnect/
 
-version: 2.0.0+001
+version: 2.0.0+002
 
 environment:
   sdk: ">=3.7.0 <4.0.0"

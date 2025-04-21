@@ -3,7 +3,7 @@ description: CloudDB is a device-cloud synergy database product that provides da
 homepage: https://developer.huawei.com/consumer/en/agconnect/
 repository: https://github.com/AppGalleryConnect/agc-flutter-plugin
 
-version: 2.0.0+001
+version: 2.0.0+002
 
 environment:
   sdk: ">=3.7.0 <4.0.0"
